@@ -87,6 +87,7 @@ import com.zxd.zxdMobile.service.UserService;
 @RestController
 @ComponentScan({"com.zxd.zxdMobile.service"})
 @MapperScan("com.zxd.zxdMobile.mapper")
+@RequestMapping("/apis")
 public class UserController {
 
     @Resource
@@ -97,12 +98,15 @@ public class UserController {
 //        return "springboot-a"+userService;
 //    }
 
-    @RequestMapping("/find")
-    public String find(){
-        User user =  userService.find(0);
+    @RequestMapping("/findUser")
+    public String findUser(){
+        User user =  userService.findUser(1);
+        System.out.println(11111);
+        System.out.println(user);
         ModelAndView mav = new ModelAndView();
         mav.addObject("user","sadf");
         return "HelloWord"+"fasdf--"+user.getNickname()+"--"+user.getPhone();
+//        return "123";
     }
 
 

@@ -3,7 +3,6 @@ package com.zxd.zxdMobile.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zxd.zxdMobile.bean.User;
@@ -12,22 +11,21 @@ import com.zxd.zxdMobile.mapper.UserMapper;
 @Service
 public class UserService {
 
-    @Autowired
     private UserMapper mapper;
 
-    public void insert(User user) {
+    public void addUser(User user) {
         mapper.insert(user);
     }
 
-    public void update(User user) {
+    public void updateUser(User user) {
         mapper.update(user);
     }
 
-    public User find(int id) {
+    public User findUser(int id) {
         return mapper.find(id);
     }
 
-    public void delete(int id){
+    public void deleteUser(int id){
         mapper.delete(id);
     }
 

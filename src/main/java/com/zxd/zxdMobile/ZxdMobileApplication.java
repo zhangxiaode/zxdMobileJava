@@ -1,46 +1,38 @@
 package com.zxd.zxdMobile;
 
-import org.springframework.beans.factory.annotation.Value;
+//import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+//import org.springframework.boot.builder.SpringApplicationBuilder;
+//import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-// get request
-//import java.util.HashMap;
-//import java.util.Map;
-//
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
-//
-//import com.yiibai.demo.model.Product;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 @RestController
-public class ZxdMobileApplication extends SpringBootServletInitializer {
+@RequestMapping("/apis")
+public class ZxdMobileApplication {
 
-	private static final Logger logger = LoggerFactory.getLogger(ZxdMobileApplication.class);
+//	private static final Logger logger = LoggerFactory.getLogger(ZxdMobileApplication.class);
 
-	@Value("${spring.application.name}")
-	private String name;
+//	@Value("${spring.application.name}")
+//	private String name;
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(ZxdMobileApplication.class);
-	}
+//	@Override
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+//		return application.sources(ZxdMobileApplication.class);
+//	}
 
 	public static void main(String[] args) {
-		logger.info("this is a info message");
-		logger.warn("this is a warn message");
-		logger.error("this is a error message");
+//		logger.info("this is a info message");
+//		logger.warn("this is a warn message");
+//		logger.error("this is a error message");
 		SpringApplication.run(ZxdMobileApplication.class, args);
 	}
 
@@ -49,10 +41,10 @@ public class ZxdMobileApplication extends SpringBootServletInitializer {
 		return "Hello World";
 	}
 
-	@RequestMapping(value = "/name")
-	public String name() {
-		return name;
-	}
+//	@RequestMapping(value = "/name")
+//	public String name() {
+//		return name;
+//	}
 
 //	private static Map<String, Product> productRepo = new HashMap<>();
 //	static {
