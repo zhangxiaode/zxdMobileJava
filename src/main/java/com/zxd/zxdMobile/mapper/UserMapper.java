@@ -1,24 +1,15 @@
 package com.zxd.zxdMobile.mapper;
 
-import java.util.List;
-
 import com.zxd.zxdMobile.bean.User;
 
 public interface UserMapper {
 
-    int deleteByPrimaryKey(String id);
+    public void insert(User user);
 
-    int insert(AppMessage record);
+    public void update(User user);
 
-    int insertSelective(AppMessage record);
+    public void delete(int id);
 
-    AppMessage selectByPrimaryKey(String id);
+    public User find(int id);
 
-    int updateByPrimaryKeySelective(AppMessage record);
-
-    int updateByPrimaryKey(AppMessage record);
-
-    List<AppMessage> selectAll();
-
-    List<AppMessage> getMessById(String id);
 }

@@ -15,15 +15,31 @@ public class UserService {
     @Autowired
     private UserMapper mapper;
 
-    public List<User> getMessage(){
-        List<User> list = new ArrayList<User>();
-        list.add(mapper.selectByPrimaryKey("xtt"));
-        //list = mapper.selectAll();
-        return list;
+    public void insert(User user) {
+        mapper.insert(user);
     }
 
-//    public List<AppMessage> getAllMessage(){
-//        List<AppMessage> list = new ArrayList<AppMessage>();
+    public void update(User user) {
+        mapper.update(user);
+    }
+
+    public User find(int id) {
+        return mapper.find(id);
+    }
+
+    public void delete(int id){
+        mapper.delete(id);
+    }
+
+//    public List<User> getMessage(){
+//        List<User> list = new ArrayList<User>();
+//        list.add(mapper.selectByPrimaryKey("xtt"));
+//        //list = mapper.selectAll();
+//        return list;
+//    }
+
+//    public List<User> getAllUser(){
+//        List<User> list = new ArrayList<User>();
 //        list = mapper.selectAll();
 //        return list;
 //    }

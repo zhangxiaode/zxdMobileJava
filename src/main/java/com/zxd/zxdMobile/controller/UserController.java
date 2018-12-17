@@ -1,63 +1,117 @@
+//package com.zxd.zxdMobile.controller;
+//
+//import java.util.List;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+////import org.springframework.web.bind.annotation.RequestBody;
+//import org.springframework.web.bind.annotation.RequestMapping;
+////import org.springframework.web.bind.annotation.RequestMethod;
+////import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RestController;
+//
+//import com.zxd.zxdMobile.bean.User;
+//import com.zxd.zxdMobile.service.UserService;
+//
+//@RestController
+//@RequestMapping("/")
+//public class UserController {
+//
+//    @Autowired
+//    private UserService service;
+//
+//    @RequestMapping("/getData")
+//    public String getData(){
+//
+////        List<User> list = service.getAllUser();
+//        return "list";
+//    }
+//
+////    @RequestMapping("/getAll")
+////    public List<AppMessage> getAllMessage(){
+////
+////        List<AppMessage> list = service.getAllMessage();
+////        int num = list.size();
+////        if(null!=list && num>3){
+////            for (int i = 0; i < num-3; i++) {
+////                list.remove(0);
+////            }
+////        }
+////        return list;
+////    }
+////
+////    @RequestMapping("/getByID")
+////    public List<AppMessage> getMessageById(@RequestParam("id") String id){
+////        List<AppMessage> list = service.getMessageById(id);
+////        int num = list.size();
+////        if(null!=list && num>5){
+////            for (int i = 0; i < num-5; i++) {
+////                list.remove(0);
+////            }
+////        }
+////        return list;
+////    }
+////
+////    @RequestMapping(value = "/add",method = RequestMethod.POST)
+////    public int addMessage(@RequestBody AppMessage appMessage){
+////        return service.addMessage(appMessage);
+////    }
+////
+////    @RequestMapping(value="/delMessageById",method=RequestMethod.POST)
+////    public int delMessageById(@RequestParam("id") String id){
+////        return service.delMessage(id);
+////    }
+//}
+
+
+
 package com.zxd.zxdMobile.controller;
 
-import java.util.List;
+import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+import javax.annotation.Resource;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.zxd.zxdMobild.bean.User;
-import com.zxd.zxdMobild.service.UserService;
+import com.zxd.zxdMobile.bean.User;
+import com.zxd.zxdMobile.service.UserService;
 
 @RestController
-@RequestMapping("/")
+@ComponentScan({"com.zxd.zxdMobile.service"})
+@MapperScan("com.zxd.zxdMobile.mapper")
 public class UserController {
 
-    @Autowired
-    private UserService service;
+    @Resource
+    private UserService userService;
 
-    @RequestMapping("/getData")
-    public List<Product> getData(){
+//    @RequestMapping("/say")
+//    public String say(){
+//        return "springboot-a"+userService;
+//    }
 
-        List<Product> list = service.getMessage();
-        return list;
+    @RequestMapping("/find")
+    public String find(){
+        User user =  userService.find(0);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("user","sadf");
+        return "HelloWord"+"fasdf--"+user.getNickname()+"--"+user.getPhone();
     }
 
-//    @RequestMapping("/getAll")
-//    public List<AppMessage> getAllMessage(){
-//
-//        List<AppMessage> list = service.getAllMessage();
-//        int num = list.size();
-//        if(null!=list && num>3){
-//            for (int i = 0; i < num-3; i++) {
-//                list.remove(0);
-//            }
-//        }
-//        return list;
+
+//    @RequestMapping("/ajax")
+//    public String find1(){
+//        return "[''message':'123dfx']";
 //    }
-//
-//    @RequestMapping("/getByID")
-//    public List<AppMessage> getMessageById(@RequestParam("id") String id){
-//        List<AppMessage> list = service.getMessageById(id);
-//        int num = list.size();
-//        if(null!=list && num>5){
-//            for (int i = 0; i < num-5; i++) {
-//                list.remove(0);
-//            }
-//        }
-//        return list;
-//    }
-//
-//    @RequestMapping(value = "/add",method = RequestMethod.POST)
-//    public int addMessage(@RequestBody AppMessage appMessage){
-//        return service.addMessage(appMessage);
-//    }
-//
-//    @RequestMapping(value="/delMessageById",method=RequestMethod.POST)
-//    public int delMessageById(@RequestParam("id") String id){
-//        return service.delMessage(id);
+
+//    public static void main(String[] args){
+//        SpringApplication.run(UserController.class,args);
 //    }
 }
