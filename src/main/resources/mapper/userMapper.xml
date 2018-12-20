@@ -4,6 +4,14 @@
 <!-- 指定工作空间，要与接口名相同，源代码没有去看，猜测应该是通过"这里的namespace.下边方法的id"来定位方法的 -->
 <mapper namespace="com.zxd.zxdMobile.mapper.UserMapper">
 
+    <resultMap id="resultMap" type="com.zxd.zxdMobile.bean.User" >
+        <id column="id" property="id" jdbcType="int" />
+        <result column="nickname" property="nickname" jdbcType="varchar" />
+        <result column="phone" property="phone" jdbcType="varchar" />
+        <result column="email" property="email" jdbcType="varchar" />
+        <result column="password" property="password" jdbcType="varchar" />
+    </resultMap>
+
     <!-- insert user -->
     <insert id = "insert" parameterType="com.zxd.zxdMobile.bean.User">
         INSERT INTO USERS(ID,NICKNAME,PHONE,EMAIL,PASSWORD) VALUES(#{id},#{nickname},#{phone},#{email},#{password});
@@ -15,8 +23,10 @@
     </update>
 
     <!-- find user -->
+    <!--resultType="com.zxd.zxdMobile.bean.User"-->
+    <!--resultMap="resultMap"-->
     <select id="find" parameterType="int" resultType="com.zxd.zxdMobile.bean.User">
-        SELECT ID,NICKNAME,PHONE,EMAIL,PASSWORD FROM USERS WHERE ID=#{0}
+        SELECT ID,NICKNAME,PHONE,EMAIL,PASSWORD FROM USERS WHERE ID=#{id}
     </select>
 
     <!-- delete user -->

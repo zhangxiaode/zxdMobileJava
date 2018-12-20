@@ -66,31 +66,20 @@
 
 package com.zxd.zxdMobile.controller;
 
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.zxd.zxdMobile.bean.User;
 import com.zxd.zxdMobile.service.UserService;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/apis")
 @ComponentScan({"com.zxd.zxdMobile.service"})
 @MapperScan("com.zxd.zxdMobile.mapper")
-@RequestMapping("/apis")
 public class UserController {
 
-    @Resource
+    @Autowired
     private UserService userService;
 
 //    @RequestMapping("/say")
@@ -100,13 +89,27 @@ public class UserController {
 
     @RequestMapping("/findUser")
     public String findUser(){
-        User user =  userService.findUser(1);
-        System.out.println(11111);
-        System.out.println(user);
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("user","sadf");
-        return "HelloWord"+"fasdf--"+user.getNickname()+"--"+user.getPhone();
-//        return "123";
+//        User user = userService.findUser(1);
+        System.out.println(userService.findUser(1));
+//        ModelAndView mav = new ModelAndView();
+//        mav.addObject("user","sadf");
+        return "123";
+//        return user;
+    }
+
+    @RequestMapping("/addUser")
+    public String addUser(){
+        return "123";
+    }
+
+    @RequestMapping("/updateUser")
+    public String updateUser(){
+        return "123";
+    }
+
+    @RequestMapping("/deleteUser")
+    public String deleteUser(){
+        return "123";
     }
 
 
@@ -116,6 +119,7 @@ public class UserController {
 //    }
 
 //    public static void main(String[] args){
-//        SpringApplication.run(UserController.class,args);
+////        SpringApplication.run(UserController.class,args);
+//        System.out.println(args);
 //    }
 }

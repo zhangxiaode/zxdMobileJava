@@ -4,21 +4,20 @@ package com.zxd.zxdMobile;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.mybatis.spring.annotation.MapperScan;
 
 //import org.springframework.boot.builder.SpringApplicationBuilder;
 //import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
-@RestController
-@RequestMapping("/apis")
+//@RestController
+//@RequestMapping("/apis")
+@MapperScan(basePackages = {"com.zxd.zxdMobile.mapper"})
+//public class ZxdMobileApplication extends SpringBootServletInitializer {
 public class ZxdMobileApplication {
-
 //	private static final Logger logger = LoggerFactory.getLogger(ZxdMobileApplication.class);
 
 //	@Value("${spring.application.name}")
@@ -36,10 +35,10 @@ public class ZxdMobileApplication {
 		SpringApplication.run(ZxdMobileApplication.class, args);
 	}
 
-	@RequestMapping(value = "/helloworld")
-	public String hello() {
-		return "Hello World";
-	}
+//	@RequestMapping(value = "/helloworld")
+//	public String hello() {
+//		return "Hello World";
+//	}
 
 //	@RequestMapping(value = "/name")
 //	public String name() {
