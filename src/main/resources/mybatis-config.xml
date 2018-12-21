@@ -1,111 +1,24 @@
-
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <!--
-        1.properties：可以使用properties来导入外部的properties文件，例如把连接数据库的配置信息单独放在一个properties中
-            resource:引入类路径下的资源
-            url:引入网络路径或者本地磁盘的资源
-    -->
-    <!--<properties resource="dbconfig.properties"></properties>-->
-    <!--
-        2.settings:包含很多的重要设置
-            setting:用来设置每一个设置项
-                name:设置项名
-                value:设置项值
-                例如：mapUnderscoreToCamelCase 默认为false 这个的作用是驼峰命名转换，l_name -> lName
-    -->
-    <!--<settings>-->
-        <!--&lt;!&ndash;开启驼峰命名&ndash;&gt;-->
-        <!--<setting name="mapUnderscoreToCamelCase" value="true"/>-->
-        <!--<setting name="jdbcTypeForNull" value="NULL"></setting>-->
-        <!--<setting name="lazyLoadingEnabled" value="true"></setting>-->
-        <!--<setting name="aggressiveLazyLoading" value="false"></setting>-->
-        <!--&lt;!&ndash;开启二级缓存&ndash;&gt;-->
-        <!--<setting name="cacheEnabled" value="true"></setting>-->
-    <!--</settings>-->
-    <!--
-        3.typeAliases:起别名的标签
-            typeAlias:为某个java类型起别名
-                type:指定要起别名的全类名，默认别名就是类小写，(但是其实他是不区分大小写的，也就是说你全部大写也没问题)
-                alias:新的别名
-            package:为某个包下的类批量起别名(这个会存在的一个问题就是可能会重复，重复的情况下还可以用@Alias来解决)
-                name:指定包名(这个就相当于是为这个包下的所有的类都创建了一个默认的别名)
-        当然还有一个起别名的方式就是在实体上使用@Alias来起别名
-        注：起别名看自己的情况，推荐还是在mapper文件中使用全类名
-    -->
+    <!--<properties resource="application.properties"/>-->
     <!--<typeAliases>-->
-        <!--<typeAlias type="com.wj.mybatis.bean.Employee" alias="emp"></typeAlias>-->
-        <!--<package name="com.wj.mybatis.bean"></package>-->
+        <!--<typeAlias alias="User" type="com.zxd.zxdMobile.bean.User" />-->
     <!--</typeAliases>-->
-    <!--
-        4.environments：配置mybatis的多种环境，default指定使用某种环境。可以达到快速切换的目的
-            environment：配置一个具体的环境信息，他必须要配置transactionManager和dataSource这两个子标签，id代表当前环境的唯一标识
-                transactionManager：事务管理器 type是具体事物的别名 有两个值：JDBC(JdbcTransactionFactory)|MANAGED(ManagedTransactionFactory)
-                当然我们还可以自定义事物：需要我们实现TransactionFactory接口 type指定为全类名
-                dataSource：数据源 type：数据源类型 有三个值：UNPOOLED(UnpooledDataSourceFactory)
-                                                           |POOLED(PooledDataSourceFactory)
-                                                           |JNDI(JndiDataSourceFactory)
-                当然我们还可以自定义数据源 使用之前接触过的c3p0，dbcp什么的，这需要我们实现DataSourceFactory type指向全类名
-                但是这部分的内容一般来说并不会使用mybatis的配置，一般都是在spring中配置
-    -->
-    <environments default="development">
-        <environment id="development">
-            <transactionManager type="JDBC"/>
-            <dataSource type="POOLED">
-                <property name="driver" value="${spring.datasource.driverClassName}" />
-                <property name="url" value="${spring.datasource.url}" />
-                <property name="username" value="${spring.datasource.username}" />
-                <property name="password" value="${spring.datasource.password}" />
-            </dataSource>
-        </environment>
+    <!--<environments default="development">-->
+        <!--<environment id="development">-->
+            <!--<transactionManager type="JDBC" />-->
+            <!--<dataSource type="POOLED">-->
+                <!--<property name="driver" value="${spring.datasource.driverClassName}" />-->
+                <!--<property name="url" value="${spring.datasource.url}" />-->
+                <!--<property name="username" value="${spring.datasource.username}" />-->
+                <!--<property name="password" value="${spring.datasource.password}" />-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
 
-        <environment id="test">
-            <transactionManager type="JDBC"/>
-            <dataSource type="POOLED">
-                <property name="driver" value="${spring.datasource.driverClassName}" />
-                <property name="url" value="${spring.datasource.url}" />
-                <property name="username" value="${spring.datasource.username}" />
-                <property name="password" value="${spring.datasource.password}" />
-            </dataSource>
-        </environment>
-    </environments>
-    <!--
-        5.databaseIdProvider:用来支持多数据库厂商
-            type="DB_VENDOR":VendorDatabaseIdProvider
-            作用就是得到数据库厂商的标识 getDatabaseProductName()
-            name是数据库厂商的标识，value使我们给他取的值
-    -->
-    <databaseIdProvider type="DB_VENDOR">
-        <property name="MySQL" value="mysql"></property>
-        <property name="Oracle" value="oracle"></property>
-    </databaseIdProvider>
-    <!-- 将我们写好的sql映MapperEmployee.xml）一定要注册到全局配置文件（mybatis-config.xml）中 -->
-    <!--
-        6.mappers：注册一个sql映射
-            mapper
-                有三种注册方式：resource url class
-                其中resource url是以配置文件的方式来注册  class是以接口的方式
-                resource：引用类路径下的sql映射文件
-                    <mapper resource="org/mybatis/builder/AuthorMapper.xml"/>
-                url：引用网络路径或者本地磁盘路径下的映射文件
-                    <mapper url="file:///var/mappers/PostMapper.xml"/>
-                class 有两种方式
-                    1.有sql映射文件时，这个文件xml文件要和接口同名且放在一起(在idea开发环境会遇到问题，就是加载不到MapperEmployee.xml
-                    解决方案是在pom中加入build标签的内容)
-                    2.没有映射文件而使用注解的方式(@Select @Delete @Insert @Update)，这个和spring data jpa类似。只不过要多加一步，将他的全限定名配置在class中
-                    注：在这里就有个问题，如果sql语句都用注解的方式，我们会不好管理，所以推荐的用法是不重要的用注解，比较重要的
-                    还是配置到映射文件中来统一管理。
-            以上这三类都是一个一个注册，还有一种批量注册的方式
-            package name是包名 但是批量注册要注意一个问题就是，在这个包下使用了注解方式的没有问题，没使用注解方式的我们就是
-            用到class方式第一种的方式，将sql的映射文件和接口放在一起
-    -->
     <!--<mappers>-->
-        <!--&lt;!&ndash;使用注解的方式&ndash;&gt;-->
-        <!--<mapper class="com.zxd.zxdMobile.dao.MapperEmployeeAnnotation"/>-->
-        <!--<package name="com.wj.mybatis.dao"></package>-->
-        <!--&lt;!&ndash;<mapper class="com.wj.mybatis.dao.MapperEmployee"></mapper>&ndash;&gt;-->
+        <!--<mapper resource="mapper/*.xml" />-->
     <!--</mappers>-->
 </configuration>

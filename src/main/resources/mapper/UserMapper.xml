@@ -4,33 +4,33 @@
 <!-- 指定工作空间，要与接口名相同，源代码没有去看，猜测应该是通过"这里的namespace.下边方法的id"来定位方法的 -->
 <mapper namespace="com.zxd.zxdMobile.mapper.UserMapper">
 
-    <resultMap id="resultMap" type="com.zxd.zxdMobile.bean.User" >
-        <id column="id" property="id" jdbcType="int" />
-        <result column="nickname" property="nickname" jdbcType="varchar" />
-        <result column="phone" property="phone" jdbcType="varchar" />
-        <result column="email" property="email" jdbcType="varchar" />
-        <result column="password" property="password" jdbcType="varchar" />
-    </resultMap>
+    <!--<resultMap id="resultMap" type="com.zxd.zxdMobile.bean.User" >-->
+        <!--<id column="id" property="id" jdbcType="int" />-->
+        <!--<result column="nickname" property="nickname" jdbcType="varchar" />-->
+        <!--<result column="phone" property="phone" jdbcType="varchar" />-->
+        <!--<result column="email" property="email" jdbcType="varchar" />-->
+        <!--<result column="password" property="password" jdbcType="varchar" />-->
+    <!--</resultMap>-->
 
     <!-- insert user -->
     <insert id = "insert" parameterType="com.zxd.zxdMobile.bean.User">
-        INSERT INTO USERS(ID,NICKNAME,PHONE,EMAIL,PASSWORD) VALUES(#{id},#{nickname},#{phone},#{email},#{password});
+        insert into users(id,nickname,phone,email,password) values(#{id},#{nickname},#{phone},#{email},#{password});
     </insert>
 
     <!-- update user -->
     <update id="update" parameterType="com.zxd.zxdMobile.bean.User">
-        UPDATE USERS SET NICKNAME=#{nickname} , PHONE=#{phone} , EMAIL = #{email}, PASSWORD = #{password} WHERE ID=#{id}
+        update users set nickname=#{nickname} , phone=#{phone} , email = #{email}, password = #{password} where id=#{id}
     </update>
 
     <!-- find user -->
     <!--resultType="com.zxd.zxdMobile.bean.User"-->
     <!--resultMap="resultMap"-->
     <select id="find" parameterType="int" resultType="com.zxd.zxdMobile.bean.User">
-        SELECT ID,NICKNAME,PHONE,EMAIL,PASSWORD FROM USERS WHERE ID=#{id}
+        select id,nickname,phone,email,password from users where id=#{id}
     </select>
 
     <!-- delete user -->
     <delete id="delete" parameterType="int">
-        DELETE FROM USERS WHERE ID=#{0}
+        delete from users where id=#{id}
     </delete>
 </mapper>

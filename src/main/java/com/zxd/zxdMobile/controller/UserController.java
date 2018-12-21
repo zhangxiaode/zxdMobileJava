@@ -66,6 +66,7 @@
 
 package com.zxd.zxdMobile.controller;
 
+import com.zxd.zxdMobile.bean.User;
 import com.zxd.zxdMobile.service.UserService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    private User user;
 
 //    @RequestMapping("/say")
 //    public String say(){
@@ -88,27 +90,31 @@ public class UserController {
 //    }
 
     @RequestMapping("/findUser")
-    public String findUser(){
+    public User findUser(){
+//        System.out.println(userService.findUser(1));
 //        User user = userService.findUser(1);
-        System.out.println(userService.findUser(1));
+//        System.out.println(userService.findUser(1));
 //        ModelAndView mav = new ModelAndView();
 //        mav.addObject("user","sadf");
-        return "123";
+        return userService.findUser(1);
 //        return user;
     }
 
     @RequestMapping("/addUser")
     public String addUser(){
+//        userService.addUser(1);
         return "123";
     }
 
     @RequestMapping("/updateUser")
     public String updateUser(){
+//        userService.updateUser(1);
         return "123";
     }
 
     @RequestMapping("/deleteUser")
     public String deleteUser(){
+//        userService.deleteUser(1);
         return "123";
     }
 

@@ -15,7 +15,7 @@ import org.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 //@RestController
 //@RequestMapping("/apis")
-@MapperScan(basePackages = {"com.zxd.zxdMobile.mapper"})
+@MapperScan("com.zxd.zxdMobile.mapper")
 //public class ZxdMobileApplication extends SpringBootServletInitializer {
 public class ZxdMobileApplication {
 //	private static final Logger logger = LoggerFactory.getLogger(ZxdMobileApplication.class);
