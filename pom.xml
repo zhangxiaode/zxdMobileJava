@@ -12,7 +12,7 @@
 	<artifactId>zxdMobile</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>zxdMobile</name>
-	<description>Demo project for Spring Boot</description>
+	<description>zxdMobile project for Spring Boot</description>
 	<packaging>war</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,15 +21,6 @@
 		<start-class>com.zxd.zxdMobile.ZxdMobileApplication</start-class>
 	</properties>
 	<dependencies>
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter</artifactId>-->
-		<!--</dependency>-->
-
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-jdbc</artifactId>-->
-		<!--</dependency>-->
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -49,8 +40,19 @@
 
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-devtools</artifactId>-->
-			<!--<optional>true</optional>-->
+			<!--<artifactId>spring-boot-starter-web</artifactId>-->
+			<!--<exclusions>-->
+				<!--<exclusion>-->
+					<!--<groupId>org.springframework.boot</groupId>-->
+					<!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+				<!--</exclusion>-->
+			<!--</exclusions>-->
+		<!--</dependency>-->
+
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+			<!--<scope>provided</scope>-->
 		<!--</dependency>-->
 
 		<dependency>
@@ -61,6 +63,7 @@
 
 	</dependencies>
 	<build>
+		<finalName>zxd_mobile</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

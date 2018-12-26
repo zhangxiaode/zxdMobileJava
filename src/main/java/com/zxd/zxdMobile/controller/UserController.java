@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/apis")
+@RequestMapping("/user")
 @ComponentScan({"com.zxd.zxdMobile.service"})
 @MapperScan("com.zxd.zxdMobile.mapper")
 public class UserController {
